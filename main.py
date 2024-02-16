@@ -29,19 +29,18 @@ def searchbyName(name):
 
 @eel.expose
 def scrapeProfilePic(username):
-    url = 'https://www.uia.no/kk/profil/' + username
-    page = requests.get(url)
-    soup = BeautifulSoup(page.text, 'html')
-    img_data = requests.get(str(soup.find('img')).split('data-src=')[1].split()[0].strip('"')).content
-    with open("web/assets/temp-pp.png", 'wb') as handler:
-        handler.write(img_data)
-    if stat("web/assets/temp-pp.png").st_size == 0:
+    try:
+        url = 'https://www.uia.no/kk/profil/' + username
+        page = requests.get(url)
+        soup = BeautifulSoup(page.text, 'html')
+        img_data = requests.get(str(soup.find('img')).split('data-src=')[1].split()[0].strip('"')).content
+        with open("web/assets/temp-pp.png", 'wb') as handler:
+            handler.write(img_data)
+        if stat("web/assets/temp-pp.png").st_size != 0:
+            return(200)
         return(404)
-    return(200)
-    
-        
-
-
+    except:
+        return(404)
 
 @eel.expose
 def accountSummary(username):
@@ -63,8 +62,7 @@ def accountSummary(username):
     summaryInfo.append(personInfo[0].get('affiliation_1'))
     summaryInfo.append((str(personInfo[0].get('last_seen_1')).strip("dateim()")))
     summaryInfo.append(client.user.history(username))
-    
-    
+
     return(summaryInfo)
 
 
