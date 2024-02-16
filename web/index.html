@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="style/styles.css">
+
+    <!-- Include eel.js - note this file doesn't exist in the 'web' directory -->
+    <script type="text/javascript" src="/eel.js"></script>
+    <script type="text/javascript" src="scripts/script.js"></script>
+</head>
+<body> 
+      <div class="app">
+        <div class="column side">
+            <form name="search" action="javascript:eel.searchbyName(document.getElementById('searchBar').value)(listUsers)">
+            <input type="text" name="searchBar" id="searchBar" placeholder="Search">
+        </form>
+            <ul id="userList"></ul>
+        </div>
+        
+        <div class="column middle">
+            <div id="accountWindow" data-has-content="false">
+                <img id="profilePicture" src="assets/profile-anon.png" alt="profile picture">
+                <div id="name"></div>
+                <div id="username"></div>
+                <div id="DOB"></div>
+                <div id="address"></div>
+                <div id="contactInfo"></div>
+                <div id="title"></div>
+                <div id="affiliation"></div>
+                <div id="lastSeen"></div>
+                <div id="userHistory"></div>
+            </div>
+        </div>
+        <div id="console">
+            <div id="buttons">
+                <button>Change Password</button>
+                <button>Verify Password</button>
+                <button>Disable Quarantine</button>
+            </div>
+            <div id="terminal"></div>
+        </div>
+      </div>
+
+
+</body>
+</html>
